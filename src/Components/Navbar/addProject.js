@@ -9,7 +9,6 @@ import AddIcon from "@material-ui/icons/Add";
 import { DropzoneArea } from "material-ui-dropzone";
 import IconButton from "@material-ui/core/IconButton";
 
-
 export default function FormDialog(props) {
   const [open, setOpen] = React.useState(false);
 
@@ -29,7 +28,7 @@ export default function FormDialog(props) {
     pics: [],
   });
 
-  if(!props.isLoggedIn()) {
+  if (!props.isLoggedIn()) {
     return <></>;
   }
 
@@ -66,9 +65,10 @@ export default function FormDialog(props) {
         <DialogTitle id="form-dialog-title">Add Project</DialogTitle>
         <DialogContent>
           <TextField
+            required="true"
             margin="dense"
             id="name"
-            label="Title"
+            label="Name"
             onChange={handleChange("title")}
             type="text"
             fullWidth

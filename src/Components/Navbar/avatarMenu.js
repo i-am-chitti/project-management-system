@@ -34,59 +34,60 @@ export default function AvatarMenu(props) {
     props.doLogOut();
   };
 
-  var avatarSrc = "/assets/userImg/user.png";
+  var avatarSrc = "/assets/userImg/user.svg";
   var navMenu, username;
-  if(props.isLoggedIn()) {
-      if('dp' in props.currentUser) {
-        avatarSrc = props.currentUser.dp;
-      }
-      username = props.currentUser.uname;
-      var uid = props.currentUser.uid;
-      var profileLink = "/"+uid;
-      var allProjectsLink = "/"+uid+"/projects";
-      navMenu = (
-        <Menu
+  if (props.isLoggedIn()) {
+    if ("dp" in props.currentUser) {
+      avatarSrc = props.currentUser.dp;
+    }
+    username = props.currentUser.uname;
+    var uid = props.currentUser.uid;
+    var profileLink = "/" + uid;
+    var allProjectsLink = "/" + uid + "/projects";
+    navMenu = (
+      <Menu
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}>
-            <MenuItem onClick={handleClose}>Share Profile</MenuItem>
-            <Link to={profileLink} className="navLinks">
-                <MenuItem onClick={handleClose} className="navLinks">
-                    My Profile
-                </MenuItem>
-            </Link>
-            <Link to={allProjectsLink} className="navLinks">
-                <MenuItem onClick={handleClose} className="navLinks">
-                    Projects
-                </MenuItem>
-            </Link>
-            <MenuItem onClick={() => handleLogOut()}>Logout</MenuItem>
-        </Menu>
-      );
-  }
-  else {
-      username = "Anonymous";
-      navMenu = (
-        <Menu
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>Share Profile</MenuItem>
+        <Link to={profileLink} className="navLinks">
+          <MenuItem onClick={handleClose} className="navLinks">
+            My Profile
+          </MenuItem>
+        </Link>
+        <Link to={allProjectsLink} className="navLinks">
+          <MenuItem onClick={handleClose} className="navLinks">
+            Projects
+          </MenuItem>
+        </Link>
+        <MenuItem onClick={() => handleLogOut()}>Logout</MenuItem>
+      </Menu>
+    );
+  } else {
+    username = "Anonymous";
+    navMenu = (
+      <Menu
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}>
-            <Link to="/login" className="navLinks">
-                <MenuItem onClick={handleClose} className="navLinks">
-                    Login
-                </MenuItem>
-            </Link>
-            <Link to="/signup" className="navLinks">
-                <MenuItem onClick={handleClose} className="navLinks">
-                    Signup
-                </MenuItem>
-            </Link>
-        </Menu>
-      );
+        onClose={handleClose}
+      >
+        <Link to="/login" className="navLinks">
+          <MenuItem onClick={handleClose} className="navLinks">
+            Login
+          </MenuItem>
+        </Link>
+        <Link to="/signup" className="navLinks">
+          <MenuItem onClick={handleClose} className="navLinks">
+            Signup
+          </MenuItem>
+        </Link>
+      </Menu>
+    );
   }
 
   return (
