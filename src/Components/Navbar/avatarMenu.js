@@ -34,6 +34,23 @@ export default function AvatarMenu(props) {
     props.doLogOut();
   };
 
+  const copy_projects_url = () => {
+    let url_now = window.location.href;
+    let url_parts = url_now.split("/");
+    let last_part = url_parts[url_parts.length-1];
+    let projects_url;
+    if(last_part==="projects")
+    {
+      projects_url = url_now ;
+    }
+    else
+    {
+      projects_url = url_now + "/projects";
+    }
+    navigator.clipboard.writeText(projects_url);
+    setAnchorEl(null);
+  };
+
   var avatarSrc = "/assets/userImg/user.svg";
   var navMenu, username;
   if (props.isLoggedIn()) {
@@ -52,7 +69,7 @@ export default function AvatarMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Share Profile</MenuItem>
+        <MenuItem onClick={copy_projects_url}>Share Profile</MenuItem>
         <Link to={profileLink} className="navLinks">
           <MenuItem onClick={handleClose} className="navLinks">
             My Profile
